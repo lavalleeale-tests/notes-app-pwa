@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
@@ -21,6 +21,8 @@ const themes = {
   }),
 };
 
+const renderLoader = () => <p>Loading</p>;
+
 function App() {
   const [cookies] = useCookies(['auth']);
 
@@ -29,12 +31,18 @@ function App() {
       <Router>
         {!cookies.auth && <Redirect to="/login" push />}
         <CssBaseline />
-        <Header />
+        <Suspense fallback={renderLoader()}>
+          <Header />
+        </Suspense>
         <Route exact path="/">
-          <Notes />
+          <Suspense fallback={renderLoader()}>
+            <Notes />
+          </Suspense>
         </Route>
         <Route exact path="/login">
-          <LoginForm />
+          <Suspense fallback={renderLoader()}>
+            <LoginForm />
+          </Suspense>
         </Route>
       </Router>
     </ThemeProvider>
