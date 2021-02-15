@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import Notes from './components/Notes';
-import Header from './components/Header';
-import LoginForm from './components/LoginForm';
+
+const Notes = lazy(() => import('./components/Notes'));
+const Header = lazy(() => import('./components/Header'));
+const LoginForm = lazy(() => import('./components/LoginForm'));
 
 const themes = {
   darkTheme: createMuiTheme({

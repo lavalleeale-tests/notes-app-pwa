@@ -92,7 +92,7 @@ function Notes() {
             variant="outlined"
             id="Content"
           />
-          <Button disabled={!navigator.onLine} style={{ float: 'right', marginTop: '10px' }} variant="outlined" type="submit">{navigator.onLine ? 'Add' : 'Network Offline'}</Button>
+          <Button aria-label={navigator.onLine ? 'Add' : 'Network Offline'} disabled={!navigator.onLine} style={{ float: 'right', marginTop: '10px' }} variant="outlined" type="submit">{navigator.onLine ? 'Add' : 'Network Offline'}</Button>
 
         </form>
       </Card>

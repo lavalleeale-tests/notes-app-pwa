@@ -43,7 +43,7 @@ function LoginForm() {
       <form onSubmit={onSubmit}>
         <TextField
           error={error}
-          helperText={!error && 'Invald Username or Password'}
+          helperText={error && 'Invald Username or Password'}
           required
           style={{ width: '100%' }}
           value={username}
@@ -62,7 +62,7 @@ function LoginForm() {
           variant="outlined"
           id="Password"
         />
-        <Button disabled={!navigator.onLine} style={{ float: 'right', marginTop: '10px' }} variant="outlined" type="submit">{navigator.onLine ? 'Submit' : 'No Connection'}</Button>
+        <Button aria-label={navigator.onLine ? 'Submit' : 'No Connection'} disabled={!navigator.onLine} style={{ float: 'right', marginTop: '10px' }} variant="outlined" type="submit">{navigator.onLine ? 'Submit' : 'No Connection'}</Button>
 
       </form>
     </Card>
