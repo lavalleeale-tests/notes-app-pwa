@@ -30,6 +30,8 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "scp -r build/ root@nodejs.local:/srv/nodejs/notesApp/build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

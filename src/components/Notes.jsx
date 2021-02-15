@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 import Note from './Note';
 
 const useStyles = makeStyles({
@@ -18,6 +19,7 @@ function Notes() {
   const [notes, setNotes] = useState([]);
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
+  let shouldLogin = false;
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -40,9 +42,13 @@ function Notes() {
     const res = await fetch('https://api.alextesting.ninja/notesApp/getNotes', {
       method: 'GET',
     });
-    const json = await res.json();
-    if (JSON.stringify(json) !== JSON.stringify(notes)) {
-      setNotes(json);
+    if (res.ok) {
+      const json = await res.json();
+      if (JSON.stringify(json) !== JSON.stringify(notes)) {
+        setNotes(json);
+      }
+    } else {
+      shouldLogin = true;
     }
   }
   async function deleteNote(id) {
@@ -57,9 +63,12 @@ function Notes() {
       setNotes(json);
     }
   }
-  getNotes();
+  if (!notes.length) {
+    getNotes();
+  }
   return (
     <>
+      {shouldLogin && <Redirect to="/login" push />}
       <Card className={classes.card}>
         <h2>New Note</h2>
         <form onSubmit={onSubmit}>
