@@ -55,7 +55,7 @@ function LoginForm() {
         <TextField
           required
           type="password"
-          style={{ width: '100%' }}
+          style={{ marginTop: '10px', width: '100%' }}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           label="Password"
