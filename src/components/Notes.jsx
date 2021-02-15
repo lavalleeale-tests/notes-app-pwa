@@ -23,6 +23,8 @@ function Notes() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    setName('');
+    setContent('');
     const res = await fetch('https://alextesting.ninja/notesApp/addNote', {
       method: 'POST',
       headers: {
@@ -94,9 +96,9 @@ function Notes() {
 
         </form>
       </Card>
-      {notes.map((note, index) => (
+      {notes.map((note) => (
         // eslint-disable-next-line react/no-array-index-key
-        <li style={{ listStyleType: 'none' }} key={index}>
+        <li style={{ listStyleType: 'none' }} key={note.id}>
           <Card className={classes.card}>
             <Note note={note} deleteMe={() => deleteNote(note.id)} />
           </Card>
