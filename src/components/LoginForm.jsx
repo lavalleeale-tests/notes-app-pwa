@@ -23,7 +23,7 @@ function LoginForm() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const res = await fetch('https://api.alextesting.ninja/notesApp/auth', {
+    const res = await fetch('https://alextesting.ninja/notesApp/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

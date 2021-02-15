@@ -23,7 +23,7 @@ function Notes() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const res = await fetch('https://api.alextesting.ninja/notesApp/addNote', {
+    const res = await fetch('https://alextesting.ninja/notesApp/addNote', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function Notes() {
     }
   }
   async function getNotes() {
-    const res = await fetch('https://api.alextesting.ninja/notesApp/getNotes', {
+    const res = await fetch('https://alextesting.ninja/notesApp/getNotes', {
       method: 'GET',
     });
     if (res.ok) {
@@ -52,7 +52,7 @@ function Notes() {
     }
   }
   async function deleteNote(id) {
-    const res = await fetch('https://api.alextesting.ninja/notesApp/deleteNote', {
+    const res = await fetch('https://alextesting.ninja/notesApp/deleteNote', {
       method: 'DELETE',
       headers: {
         id,
