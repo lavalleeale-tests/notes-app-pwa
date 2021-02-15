@@ -79,12 +79,13 @@ self.addEventListener('message', (event) => {
 self.addEventListener('fetch', (event) => {
   // Clone the request to ensure it's safe to read when
   // adding to the Queue.
-  // eslint-disable-next-line no-unused-vars
-  const promiseChain = fetch(event.request.clone()).catch((err) => queue.pushRequest({
-    request: event.request,
-  }));
+  if (!self.navigator.onLine) {
+    const promiseChain = fetch(event.request.clone()).catch(() => queue.pushRequest({
+      request: event.request,
+    }));
 
-  event.waitUntil(promiseChain);
+    event.waitUntil(promiseChain);
+  }
 });
 
 // Any other custom service worker logic can go here.
