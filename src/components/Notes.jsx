@@ -68,6 +68,26 @@ function Notes() {
   if (!notes.length) {
     getNotes();
   }
+  async function updateNote(note) {
+    const res = await fetch('https://alextesting.ninja/notesApp/updateNote', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: note.id,
+        name: note.name,
+        content: note.content,
+      }),
+    });
+    const json = await res.json();
+    if (JSON.stringify(json) !== JSON.stringify(notes)) {
+      setNotes(json);
+    }
+  }
+  if (!notes.length) {
+    getNotes();
+  }
   return (
     <>
       {shouldLogin && <Redirect to="/login" push />}
@@ -101,7 +121,11 @@ function Notes() {
         // eslint-disable-next-line react/no-array-index-key
           <li key={note.id}>
             <Card className={classes.card}>
-              <Note note={note} deleteMe={() => deleteNote(note.id)} />
+              <Note
+                note={note}
+                deleteFunc={(id) => deleteNote(id)}
+                updateFunc={(newNote) => updateNote(newNote)}
+              />
             </Card>
           </li>
         ))}
