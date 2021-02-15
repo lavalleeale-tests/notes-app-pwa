@@ -31,7 +31,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "scp -r build/ root@nodejs.local:/srv/nodejs/notesApp/build",
+    "deploy": "scp -r build/ root@nodejs.local:/srv/nodejs/notesApp/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
