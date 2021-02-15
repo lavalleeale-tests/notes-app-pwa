@@ -20,7 +20,12 @@ const themes = {
     },
   }),
 };
-const renderLoader = () => <p>Loading</p>;
+function renderLoader() {
+  return (
+    <>
+    </>
+  );
+}
 
 function App() {
   const [cookies] = useCookies(['auth']);

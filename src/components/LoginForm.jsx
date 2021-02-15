@@ -62,7 +62,15 @@ function LoginForm() {
           variant="outlined"
           id="Password"
         />
-        <Button aria-label={navigator.onLine ? 'Submit' : 'No Connection'} disabled={!navigator.onLine} style={{ float: 'right', marginTop: '10px' }} variant="outlined" type="submit">{navigator.onLine ? 'Submit' : 'No Connection'}</Button>
+        <Button
+          aria-label={navigator.onLine ? 'Submit' : 'No Connection'}
+          disabled={!navigator.onLine}
+          style={{ float: 'right', marginTop: '10px' }}
+          variant="outlined"
+          type="submit"
+        >
+          {navigator.onLine ? 'Submit' : 'No Connection'}
+        </Button>
 
       </form>
     </Card>
