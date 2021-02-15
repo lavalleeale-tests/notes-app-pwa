@@ -20,14 +20,14 @@ const themes = {
     },
   }),
 };
-
 const renderLoader = () => <p>Loading</p>;
 
 function App() {
   const [cookies] = useCookies(['auth']);
+  const mq = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   return (
-    <ThemeProvider theme={themes.darkTheme}>
+    <ThemeProvider theme={mq ? themes.darkTheme : themes.lightTheme}>
       <Router>
         {!cookies.auth && <Redirect to="/login" push />}
         <CssBaseline />
