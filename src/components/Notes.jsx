@@ -19,7 +19,7 @@ function Notes() {
   const [notes, setNotes] = useState([]);
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
-  let shouldLogin = false;
+  const [shouldLogin, setShouldLogin] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -47,8 +47,8 @@ function Notes() {
       if (JSON.stringify(json) !== JSON.stringify(notes)) {
         setNotes(json);
       }
-    } else {
-      shouldLogin = true;
+    } else if (navigator.onLine) {
+      setShouldLogin(true);
     }
   }
   async function deleteNote(id) {
