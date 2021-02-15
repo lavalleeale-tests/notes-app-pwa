@@ -79,7 +79,8 @@ self.addEventListener('message', (event) => {
 self.addEventListener('fetch', (event) => {
   // Clone the request to ensure it's safe to read when
   // adding to the Queue.
-  const promiseChain = fetch(event.request.clone()).catch(() => queue.pushRequest({
+  // eslint-disable-next-line no-unused-vars
+  const promiseChain = fetch(event.request.clone()).catch((err) => queue.pushRequest({
     request: event.request,
   }));
 
