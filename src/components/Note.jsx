@@ -5,7 +5,7 @@ import { IconButton } from '@material-ui/core';
 
 const Note = ({ note, deleteMe }) => (
   <div>
-    <IconButton onClick={deleteMe} style={{ float: 'right' }}>
+    <IconButton aria-label="delete" onClick={deleteMe} style={{ float: 'right' }}>
       <Delete />
     </IconButton>
     <h2>

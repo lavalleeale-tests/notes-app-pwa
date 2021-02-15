@@ -96,14 +96,16 @@ function Notes() {
 
         </form>
       </Card>
-      {notes.map((note) => (
+      <ul>
+        {notes.map((note) => (
         // eslint-disable-next-line react/no-array-index-key
-        <li style={{ listStyleType: 'none' }} key={note.id}>
-          <Card className={classes.card}>
-            <Note note={note} deleteMe={() => deleteNote(note.id)} />
-          </Card>
-        </li>
-      ))}
+          <li style={{ listStyleType: 'none' }} key={note.id}>
+            <Card className={classes.card}>
+              <Note note={note} deleteMe={() => deleteNote(note.id)} />
+            </Card>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
