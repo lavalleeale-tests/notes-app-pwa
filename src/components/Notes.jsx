@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
-import { Card, TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
-import Note from './Note';
+import React, { useState } from "react";
+import { Card, TextField, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Redirect } from "react-router-dom";
+import Note from "./Note";
 
 const useStyles = makeStyles({
   card: {
-    margin: 'auto',
-    'margin-top': '10px',
-    'margin-bottom': '10px',
+    margin: "auto",
+    "margin-top": "10px",
+    "margin-bottom": "10px",
     maxWidth: 500,
-    padding: '10px',
+    padding: "10px",
   },
 });
 
 function Notes() {
   const classes = useStyles();
   const [notes, setNotes] = useState([]);
-  const [name, setName] = useState('');
-  const [content, setContent] = useState('');
+  const [name, setName] = useState("");
+  const [content, setContent] = useState("");
   const [shouldLogin, setShouldLogin] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
-    setName('');
-    setContent('');
-    const res = await fetch('https://alextesting.ninja/notesApp/addNote', {
-      method: 'POST',
+    setName("");
+    setContent("");
+    const res = await fetch("https://alextesting.ninja/notesApp/addNote", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
@@ -41,8 +41,8 @@ function Notes() {
     }
   }
   async function getNotes() {
-    const res = await fetch('https://alextesting.ninja/notesApp/getNotes', {
-      method: 'GET',
+    const res = await fetch("https://alextesting.ninja/notesApp/getNotes", {
+      method: "GET",
     });
     if (res.ok) {
       const json = await res.json();
@@ -54,8 +54,8 @@ function Notes() {
     }
   }
   async function deleteNote(id) {
-    const res = await fetch('https://alextesting.ninja/notesApp/deleteNote', {
-      method: 'DELETE',
+    const res = await fetch("https://alextesting.ninja/notesApp/deleteNote", {
+      method: "DELETE",
       headers: {
         id,
       },
@@ -69,10 +69,10 @@ function Notes() {
     getNotes();
   }
   async function updateNote(note) {
-    const res = await fetch('https://alextesting.ninja/notesApp/updateNote', {
-      method: 'PUT',
+    const res = await fetch("https://alextesting.ninja/notesApp/updateNote", {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         id: note.id,
@@ -96,7 +96,7 @@ function Notes() {
         <form onSubmit={onSubmit}>
           <TextField
             required
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
             value={name}
             onChange={(e) => setName(e.target.value)}
             label="Title"
@@ -105,20 +105,26 @@ function Notes() {
           />
           <TextField
             required
-            style={{ width: '100%', marginTop: '10px' }}
+            style={{ width: "100%", marginTop: "10px" }}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             label="Content"
             variant="outlined"
             id="Content"
           />
-          <Button aria-label={navigator.onLine ? 'Add' : 'Network Offline'} disabled={!navigator.onLine} style={{ float: 'right', marginTop: '10px' }} variant="outlined" type="submit">{navigator.onLine ? 'Add' : 'Network Offline'}</Button>
-
+          <Button
+            aria-label={navigator.onLine ? "Add" : "Network Offline"}
+            disabled={!navigator.onLine}
+            style={{ float: "right", marginTop: "10px" }}
+            variant="outlined"
+            type="submit"
+          >
+            {navigator.onLine ? "Add" : "Network Offline"}
+          </Button>
         </form>
       </Card>
-      <ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+      <ul style={{ listStyle: "none", paddingLeft: "0" }}>
         {notes.map((note) => (
-        // eslint-disable-next-line react/no-array-index-key
           <li key={note.id}>
             <Card className={classes.card}>
               <Note

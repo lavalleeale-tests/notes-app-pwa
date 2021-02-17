@@ -20,7 +20,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "https://alextesting.ninja/notesApp",
+  "start_url": "https://alextesting.ninija/notesApp/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
